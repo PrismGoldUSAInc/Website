@@ -1,0 +1,151 @@
+/* Accessibility Enhancements */
+
+/* Focus Management */
+.focus-visible,
+*:focus-visible {
+    outline: 3px solid var(--gold-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.3);
+    border-radius: var(--radius-sm);
+}
+
+/* Remove outline for mouse users */
+*:focus:not(.focus-visible) {
+    outline: none;
+}
+
+/* Screen Reader Only Content */
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* High Contrast Mode Improvements */
+@media (prefers-contrast: high) {
+    .carat-card,
+    .product-card,
+    .contact-item,
+    .stat-item {
+        border: 2px solid var(--gold-primary);
+        background: var(--dark-bg);
+    }
+    
+    .cta-button,
+    .product-btn,
+    .submit-btn {
+        border: 2px solid var(--dark-bg);
+    }
+}
+
+/* Large Text Support */
+@media (min-resolution: 192dpi) {
+    body {
+        font-size: 1.125rem;
+    }
+    
+    .cta-button,
+    .product-btn,
+    .submit-btn {
+        min-height: 48px;
+        min-width: 48px;
+    }
+}
+
+/* Keyboard Navigation Improvements */
+.nav-links a:focus,
+.product-card:focus,
+.carat-card:focus,
+.contact-item:focus {
+    transform: translateY(-5px);
+    transition: transform var(--transition-base);
+}
+
+/* Touch Target Size */
+button,
+.cta-button,
+.product-btn,
+.submit-btn,
+input,
+select,
+textarea {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Form Accessibility */
+input:invalid,
+textarea:invalid,
+select:invalid {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+}
+
+input:valid,
+textarea:valid,
+select:valid {
+    border-color: #51cf66;
+}
+
+/* Error States */
+.error {
+    color: #ff6b6b;
+    font-size: 0.875rem;
+    margin-top: var(--spacing-xs);
+}
+
+.form-group.has-error input,
+.form-group.has-error textarea,
+.form-group.has-error select {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+}
+
+/* Loading States */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--gold-primary);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: loading-spin 1s linear infinite;
+}
+
+@keyframes loading-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Announce for Screen Readers */
+.announce {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+[aria-live="polite"],
+[aria-live="assertive"] {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
